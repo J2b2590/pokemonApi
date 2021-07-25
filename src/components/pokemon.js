@@ -4,7 +4,12 @@ function Pokemon(props) {
     <div>
       {props.poke_mon.map((Pokemon) => {
         console.log(Pokemon, "MAP");
-        return <h2>{Pokemon.name}</h2>;
+        const img = `${Pokemon.url}`;
+        return (
+          <div>
+            <h2>{Pokemon.name}</h2>
+          </div>
+        );
       })}
     </div>
   );
