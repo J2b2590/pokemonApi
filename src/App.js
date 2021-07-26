@@ -6,19 +6,20 @@ import Pokemon from "./components/pokemon";
 
 function App() {
   const [poke_mon, getPokemon] = useState([]);
-  const [poke_monImg, getPokemonImg] = useState([]);
+  // const [poke_monID, getPokemonID] = useState(151);
+  // const [poke_monImg, getPokemonImg] = useState([]);
   // const imgApi = "https://pokeres.bastionbot.org ";
 
   useEffect(() => {
     getAllPokemon();
-    getPokemonImgCall();
+    // getPokemonImgCall();
   }, []);
 
   const getAllPokemon = () => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=1")
+      .get("https://pokeapi.co/api/v2/pokemon/?limit=10")
       .then((resp) => {
-        console.log(resp.data.results);
+        console.log(resp.data, "API");
         const allPokemon = resp.data.results;
         const pokeImg = resp.data.url;
         // getPokemonImg(pokeImg);
@@ -27,20 +28,20 @@ function App() {
       .catch((error) => console.log(`Error ${error}`));
   };
 
-  const getPokemonImgCall = () => {
-    axios
-      .get(` https://pokeres.bastionbot.org/images/pokemon/`)
-      .then((resp) => {
-        console.log(resp, "IMG CALL");
-        const allPokemonImg = resp.data;
-        getPokemonImg(allPokemonImg);
-      })
-      .catch((error) => console.log(`Error ${error}`));
-  };
+  // const getPokemonImgCall = () => {
+  //   axios
+  //     .get(` https://pokeres.bastionbot.org/images/pokemon/`)
+  //     .then((resp) => {
+  //       console.log(resp, "IMG CALL");
+  //       const allPokemonImg = resp.data;
+  //       getPokemonImg(allPokemonImg);
+  //     })
+  //     .catch((error) => console.log(`Error ${error}`));
+  // };
 
   return (
     <div>
-      <Pokemon poke_mon={poke_mon} poke_monImg={poke_monImg} />
+      <Pokemon poke_mon={poke_mon} />
     </div>
   );
 }

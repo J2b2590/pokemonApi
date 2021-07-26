@@ -1,14 +1,13 @@
+import PokemonList from "./pokemonList";
+
 function Pokemon(props) {
   console.log(props);
   return (
     <div>
       {props.poke_mon.map((Pokemon) => {
-        console.log(Pokemon, "MAP");
-        const img = `${Pokemon.url}`;
+        const poke_id = Pokemon.url.split("/")[6];
         return (
-          <div>
-            <h2>{Pokemon.name}</h2>
-          </div>
+          <PokemonList key={poke_id} id={poke_id} Pokemon={Pokemon.name} />
         );
       })}
     </div>
