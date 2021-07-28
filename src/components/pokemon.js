@@ -1,18 +1,23 @@
 import PokemonList from "./pokemonList";
-import { useState, useEffect } from "react";
+import { Col, Row, Container, Card, Image, Button } from "react-bootstrap";
 
 function Pokemon(props) {
-  //   const [pokeId, getPokeId] = useState("");
   console.log(props);
 
   return (
-    <div>
-      {props.poke_mon.map((Pokemon) => {
-        const pokeId = Pokemon.url.split("/")[6];
+    <Container>
+      <Row>
+        {props.poke_mon.map((Pokemon) => {
+          const pokeId = Pokemon.url.split("/")[6];
 
-        return <PokemonList key={pokeId} id={pokeId} Pokemon={Pokemon.name} />;
-      })}
-    </div>
+          return (
+            <Col>
+              <PokemonList key={pokeId} id={pokeId} Pokemon={Pokemon.name} />
+            </Col>
+          );
+        })}
+      </Row>
+    </Container>
   );
 }
 
