@@ -6,13 +6,12 @@ import Pokemon from "./components/pokemon";
 
 function App() {
   const [poke_mon, getPokemon] = useState([]);
-  // const [poke_monID, getPokemonID] = useState(151);
-  // const [poke_monImg, getPokemonImg] = useState([]);
-  // const imgApi = "https://pokeres.bastionbot.org ";
+
+
 
   useEffect(() => {
     getAllPokemon();
-    // getPokemonImgCall();
+    
   }, []);
 
   const getAllPokemon = () => {
@@ -28,16 +27,7 @@ function App() {
       .catch((error) => console.log(`Error ${error}`));
   };
 
-  // const getPokemonImgCall = () => {
-  //   axios
-  //     .get(` https://pokeres.bastionbot.org/images/pokemon/`)
-  //     .then((resp) => {
-  //       console.log(resp, "IMG CALL");
-  //       const allPokemonImg = resp.data;
-  //       getPokemonImg(allPokemonImg);
-  //     })
-  //     .catch((error) => console.log(`Error ${error}`));
-  // };
+  
 
   return (
     <div>
