@@ -6,7 +6,7 @@ function Pokemon(props) {
 
   return (
     <Container>
-      <Row>
+      <Row md={3}>
         {props.poke_mon.map((Pokemon) => {
           const pokeId = Pokemon.url.split("/")[6];
 

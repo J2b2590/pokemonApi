@@ -5,43 +5,46 @@ import "../App.css";
 
 function PokemonList(props) {
   const [poke_monImg, getPokemonImg] = useState([]);
+  const [poke_data, getAllPokeData] = useState([]);
 
-  const imgApi = "https://pokeres.bastionbot.org ";
+  const imgApi = `https://pokeres.bastionbot.org/images/pokemon/${props.id}.png`;
 
-  console.log(props, "Poke List");
+  //   console.log(props, "Poke List");
 
   useEffect(() => {
     getPokemonImgCall();
+    getPokeData();
   }, []);
+
   const getPokemonImgCall = () => {
     axios
-      .get(`https://pokeres.bastionbot.org/images/pokemon/${props.id}.png`)
+      .get(`${imgApi}`)
       .then((resp) => {
-        console.log(resp, "IMG CALL");
+        // console.log(resp, "IMG CALL");
         const allPokemonImg = resp.config.url;
         getPokemonImg(allPokemonImg);
       })
       .catch((error) => console.log(`Error ${error}`));
   };
+
+  const getPokeData = async () => {
+    await axios
+      .get(`https://pokeapi.co/api/v2/move/${props.id}`)
+      .then((resp) => {
+        console.log(resp);
+        getAllPokeData(resp.data);
+      });
+  };
   return (
     <div>
-      <Container>
-        <Row className="row-cols-1 row-cols-md-2 g-4">
-          <Col>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={poke_monImg} />
-              <Card.Body>
-                <Card.Title>{props.Pokemon}</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+      <Card style={{ width: "18rem" }}>
+        <Card.Img variant="top" src={poke_monImg} />
+        <Card.Body>
+          <Card.Title>{props.Pokemon}</Card.Title>
+          <Card.Text>Ability: {poke_data.name}</Card.Text>
+          <Button variant="primary">Go somewhere</Button>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
