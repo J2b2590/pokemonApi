@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import Pokemon from "./components/pokemon";
+import { Route, Switch } from "react-router";
 
 function App() {
   const [poke_mon, getPokemon] = useState([]);
@@ -24,9 +25,15 @@ function App() {
   };
 
   return (
-    <div>
-      <Pokemon poke_mon={poke_mon} />
-    </div>
+    <Switch>
+      <Route
+        exact
+        path="/"
+        render={(props) => {
+          return <Pokemon {...props} poke_mon={poke_mon} />;
+        }}
+      />
+    </Switch>
   );
 }
 
