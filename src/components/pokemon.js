@@ -12,7 +12,7 @@ function Pokemon(props) {
 
           return (
             <Col>
-              <PokemonList key={pokeId} id={pokeId} Pokemon={Pokemon.name} />
+              <PokemonList key={pokeId} id={pokeId} Pokemon={Pokemon.name} history={props.history}/>
             </Col>
           );
         })}

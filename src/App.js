@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import Pokemon from "./components/pokemon";
+import PokemonView from "./components/pokemonView"
 import { Route, Switch } from "react-router";
 
 function App() {
@@ -18,7 +19,6 @@ function App() {
       .then((resp) => {
         console.log(resp.data, "API");
         const allPokemon = resp.data.results;
-        const pokeImg = resp.data.url;
         getPokemon(allPokemon);
       })
       .catch((error) => console.log(`Error ${error}`));
@@ -33,6 +33,7 @@ function App() {
           return <Pokemon {...props} poke_mon={poke_mon} />;
         }}
       />
+      <Route path="/pokemon/:id" component={PokemonView} />
     </Switch>
   );
 }

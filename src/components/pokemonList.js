@@ -7,11 +7,7 @@ import "../App.css";
 function PokemonList(props) {
   console.log(props.id, "POKE LIST");
   const [poke_monImg, getPokemonImg] = useState([]);
-  //   const [poke_data, getAllPokeData] = useState([]);
-
-  //   const imgApi = `https://pokeres.bastionbot.org/images/pokemon/${props.id}.png`;
-
-  //   console.log(props, "Poke List");
+ 
 
   useEffect(() => {
     getPokemonImgCall();
@@ -22,7 +18,7 @@ function PokemonList(props) {
     await axios
       .get(`http://pokeapi.co/api/v2/pokemon/${props.id}`)
       .then((resp) => {
-        console.log(resp.data.sprites.back_default, "IMG CALL");
+        console.log(resp.data.sprites, "IMG CALL");
         const allPokemonImg = resp.data.sprites.front_default;
         getPokemonImg(allPokemonImg);
       })
@@ -42,7 +38,7 @@ function PokemonList(props) {
         <Card.Body>
           <Card.Title>{props.Pokemon}</Card.Title>
           {/* <Card.Text>Ability: {poke_data.name}</Card.Text> */}
-          <Button variant="primary">Go somewhere</Button>
+          <Button onClick={() => props.history.push("/pokemon/:id")} variant="primary">Go somewhere</Button>
         </Card.Body>
       </Card>
     </div>
