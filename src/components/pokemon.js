@@ -1,5 +1,6 @@
 import PokemonList from "./pokemonList";
 import { Col, Row, Container, Card, Image, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Pokemon(props) {
   console.log(props);
@@ -13,6 +14,9 @@ function Pokemon(props) {
           return (
             <Col>
               <PokemonList key={pokeId} id={pokeId} Pokemon={Pokemon.name} history={props.history}/>
+              <Link to={`/pokemon/${pokeId}`}>
+             
+              </Link>
             </Col>
           );
         })}

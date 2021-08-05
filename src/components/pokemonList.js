@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import "../App.css";
 
 function PokemonList(props) {
-  console.log(props.id, "POKE LIST");
+  // console.log(props.id, "POKE LIST");
   const [poke_monImg, getPokemonImg] = useState([]);
  
 
@@ -18,7 +18,7 @@ function PokemonList(props) {
     await axios
       .get(`http://pokeapi.co/api/v2/pokemon/${props.id}`)
       .then((resp) => {
-        console.log(resp.data.sprites, "IMG CALL");
+        // console.log(resp.data.sprites, "IMG CALL");
         const allPokemonImg = resp.data.sprites.front_default;
         getPokemonImg(allPokemonImg);
       })
@@ -38,7 +38,7 @@ function PokemonList(props) {
         <Card.Body>
           <Card.Title>{props.Pokemon}</Card.Title>
           {/* <Card.Text>Ability: {poke_data.name}</Card.Text> */}
-          <Button onClick={() => props.history.push("/pokemon/:id")} variant="primary">Go somewhere</Button>
+          <Button onClick={() => props.history.push({pathname: `/pokemon/${props.id}`, state: {poke: JSON.stringify(props)}})} variant="primary">Go somewhere</Button>
         </Card.Body>
       </Card>
     </div>

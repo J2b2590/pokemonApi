@@ -5,35 +5,45 @@ import { useEffect, useState } from "react";
 import Pokemon from "./components/pokemon";
 import PokemonView from "./components/pokemonView"
 import { Route, Switch } from "react-router";
+import Login from "./components/login"
 
 function App() {
   const [poke_mon, getPokemon] = useState([]);
+  // const [poke_monID, getPokemonID] = useState([]);
 
   useEffect(() => {
     getAllPokemon();
   }, []);
 
-  const getAllPokemon = async () => {
-    await axios
-      .get("https://pokeapi.co/api/v2/pokemon/?limit=10")
+  const getAllPokemon =  () => {
+ axios
+      .get("https://pokeapi.co/api/v2/pokemon/?limit=100")
       .then((resp) => {
         console.log(resp.data, "API");
+        console.log(resp.data.results)
         const allPokemon = resp.data.results;
+        // const pokeId = resp.data.results.url.split("/")[6];
         getPokemon(allPokemon);
+        
       })
       .catch((error) => console.log(`Error ${error}`));
   };
 
   return (
     <Switch>
+      <Route exact path="/" component={Login} />
       <Route
         exact
-        path="/"
+        path="/pokemon"
         render={(props) => {
           return <Pokemon {...props} poke_mon={poke_mon} />;
         }}
       />
-      <Route path="/pokemon/:id" component={PokemonView} />
+      <Route exact
+        path="/pokemon/:id"
+        render={(props) => {
+          return <PokemonView {...props} poke_mon={poke_mon}/>;
+        }} />
     </Switch>
   );
 }
