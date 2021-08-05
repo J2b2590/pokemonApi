@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import Pokemon from "./components/pokemon";
 import PokemonView from "./components/pokemonView"
+import Header from "./components/header"
 import { Route, Switch } from "react-router";
 import Login from "./components/login"
 
@@ -36,7 +37,9 @@ function App() {
   }
 
   return (
-    <Switch>
+    <div>
+      <Header />
+      <Switch>
       <Route exact path="/" render={(props) => {
         return <Login grabLoginUsers={grabLoginUsers} history={props.history}/>
       }} />
@@ -53,6 +56,9 @@ function App() {
           return <PokemonView {...props} poke_mon={poke_mon}/>;
         }} />
     </Switch>
+
+   </div>
+    
   );
 }
 

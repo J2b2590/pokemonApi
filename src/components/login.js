@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import "../App.css"
 
 
 const Login = (props) => {
@@ -9,17 +10,20 @@ const Login = (props) => {
         props.grabLoginUsers(e)
     }
     return (
-        <div>
+        <div className="login-form">
             <form onSubmit={handleSubmit(onSubmit)}  >
-                <lable>
+                <label>
                     First Name:
                     <input {...register("firstName")}  />
-                </lable>
-                <lable>
+                </label>
+                <label>
                     Last Name:
                     <input {...register("lastName")} />
-                </lable>
+                </label>
+                
+                <label>
                 <input type="submit" value="submit"/>
+                </label>   
             </form>
         </div>
     )
