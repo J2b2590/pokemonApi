@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header personLog={personLog}/>
       <Switch>
       <Route exact path="/" render={(props) => {
         return <Login grabLoginUsers={grabLoginUsers} history={props.history}/>
