@@ -9,6 +9,7 @@ import Login from "./components/login"
 
 function App() {
   const [poke_mon, getPokemon] = useState([]);
+  const [personLog, getPersonLog] = useState([]);
   // const [poke_monID, getPokemonID] = useState([]);
 
   useEffect(() => {
@@ -29,14 +30,21 @@ function App() {
       .catch((error) => console.log(`Error ${error}`));
   };
 
+  const grabLoginUsers = (e) => {
+    console.log(e)
+    getPersonLog(e)
+  }
+
   return (
     <Switch>
-      <Route exact path="/" component={Login} />
+      <Route exact path="/" render={(props) => {
+        return <Login grabLoginUsers={grabLoginUsers} history={props.history}/>
+      }} />
       <Route
         exact
         path="/pokemon"
         render={(props) => {
-          return <Pokemon {...props} poke_mon={poke_mon} />;
+          return <Pokemon {...props} poke_mon={poke_mon} personLog={personLog} />;
         }}
       />
       <Route exact

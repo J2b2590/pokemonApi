@@ -1,8 +1,27 @@
-import { render } from "@testing-library/react"
+import { useForm } from 'react-hook-form'
 
-const Login = () => {
+
+const Login = (props) => {
+    const {register, handleSubmit} = useForm()
+    const onSubmit = (e) => {
+        // alert(JSON.stringify(e))
+        props.history.push("/pokemon")
+        props.grabLoginUsers(e)
+    }
     return (
-        <div><h1>Login</h1></div>
+        <div>
+            <form onSubmit={handleSubmit(onSubmit)}  >
+                <lable>
+                    First Name:
+                    <input {...register("firstName")}  />
+                </lable>
+                <lable>
+                    Last Name:
+                    <input {...register("lastName")} />
+                </lable>
+                <input type="submit" value="submit"/>
+            </form>
+        </div>
     )
 }
 
