@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message';
+
 import "../App.css"
 
 
 const Login = (props) => {
     const {register, formState: { errors }, handleSubmit} = useForm()
     const onSubmit = (e) => {
-        // alert(JSON.stringify(e))
         props.history.push("/pokemon")
         props.grabLoginUsers(e)
     }
@@ -27,6 +27,7 @@ const Login = (props) => {
                     render={({ message }) => <p style={{color: "red", textAlign: "center"}} >{message}</p>}
                 />   
             </form>
+            
         </div>
     )
 }

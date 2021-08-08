@@ -2,21 +2,16 @@
   display: flex; /* or inline-flex */
 }
 
-
-
-
-.login-form{
+.login-form {
   display: flex;
   margin: auto;
   width: 50%;
   border: 3px solid green;
   padding: 10px;
-  margin-top: 25%;
   padding: 1rem;
 }
 
-
-.header{
+.header {
   text-align: center;
   margin: auto;
 }
