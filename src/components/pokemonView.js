@@ -1,28 +1,38 @@
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Button } from "react-bootstrap";
 const PokemonView = (props) => {
   const { id } = useParams();
-  console.log(props, "id");
-  //   console.log(JSON.parse(props.location.state.poke))
-  //   const pokeId = props.poke_mon.url.split("/")[6];
-  //   console.log(pokeId)
+  const [pokeData, getPokeData] = useState([]);
+  //   console.log(props, "id");
   const poke = JSON.parse(props.location.state.poke);
-  console.log(poke, "pOKE");
-  //   const name = props.location.state.poke;
-  //   console.log(name);
-  // const keys = Object.keys(props.location.state.poke)
-  // keys.map((key)=>{
-  //    console.log(props.location.state.poke[key])
+  //   console.log(poke, "pOKE");
+  console.log(pokeData);
 
-  // })
+  useEffect(() => {
+    getOnePokemon();
+  }, []);
+
+  const getOnePokemon = async () => {
+    await axios
+      .get(`https://pokeapi.co/api/v2/pokemon/${poke.Pokemon}`)
+      .then((resp) => {
+        console.log(resp, "ONE POKE");
+        getPokeData(resp.data);
+      });
+  };
 
   return (
     <div>
       <h1>{poke.Pokemon}</h1>
-      <h1>poke id - {id} </h1>
-      {/* <Button onClick={props.history.push("/pokemon")}>Back</Button> */}
+      {}
+
+      <Button onClick={() => props.history.push("/pokemon")}>Back</Button>
     </div>
   );
 };
 
 export default PokemonView;
+// front_default;
+// back_default;

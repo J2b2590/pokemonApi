@@ -48,6 +48,7 @@ function PokemonList(props) {
             View Detail
           </Button>
           <Button
+            onClick={() => props.grabFavPoke(`${props.id}`)}
             style={{
               marginLeft: "2rem",
               backgroundColor: "red",

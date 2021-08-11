@@ -1,3 +1,4 @@
+import { Button } from "bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 
 import "../App.css";
@@ -10,6 +11,15 @@ const Header = (props) => {
 
   return (
     <Container fluid className="header" style={{ backgroundColor: "red" }}>
+      <Row>
+        <Col>
+          {/* {firstName ? (
+            <h1 onClick={props.history.push("/pokemon/favorites")}>
+              view pokedex
+            </h1>
+          ) : null} */}
+        </Col>
+      </Row>
       <Row className="justify-content-lg-center ">
         <Col lg={8}>
           <h1>welcome to pokedex creator</h1>

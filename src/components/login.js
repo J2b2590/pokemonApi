@@ -5,6 +5,7 @@ import "../App.css";
 
 const Login = (props) => {
   console.log(props, "LOGIN");
+
   const {
     register,
     formState: { errors },
