@@ -1,6 +1,7 @@
 import PokemonList from "../components/pokemonList";
 import { Col, Row, Container, Card, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Pokedex from "../components/pokedex";
 
 function Pokemon(props) {
   console.log(props, "POKEMON");

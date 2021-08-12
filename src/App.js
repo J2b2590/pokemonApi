@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import Pokemon from "./containers/pokemon";
+import PokedexContainer from "./containers/pokedexContainer";
 import PokemonView from "./components/pokemonView";
 import Pokedex from "./components/pokedex";
 import Header from "./components/header";
@@ -39,7 +40,15 @@ function App() {
 
   const grabFavPoke = (pokemon) => {
     // console.log(pokemon);
-    getFavPoke(pokemon);
+    let newFavPoke = [...favPoke, pokemon];
+    getFavPoke(newFavPoke);
+  };
+
+  const handleDelete = (pokemon) => {
+    // console.log(pokemon);
+    const newFavArr = favPoke.filter((poke) => poke !== pokemon);
+    console.log(newFavArr);
+    getFavPoke(newFavArr);
   };
 
   return (
@@ -80,7 +89,13 @@ function App() {
           exact
           path="/favorites"
           render={(props) => {
-            return <Pokedex favPoke={favPoke} />;
+            return (
+              <PokedexContainer
+                history={props.history}
+                favPoke={favPoke}
+                handleDelete={handleDelete}
+              />
+            );
           }}
         />
       </Switch>
