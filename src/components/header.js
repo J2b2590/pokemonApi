@@ -1,5 +1,6 @@
 import { Button } from "bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
 import "../App.css";
 
@@ -13,11 +14,11 @@ const Header = (props) => {
     <Container fluid className="header" style={{ backgroundColor: "red" }}>
       <Row>
         <Col>
-          {/* {firstName ? (
-            <h1 onClick={props.history.push("/pokemon/favorites")}>
+          {firstName ? (
+            <h1 onClick={() => props.history.push("/favorites")}>
               view pokedex
             </h1>
-          ) : null} */}
+          ) : null}
         </Col>
       </Row>
       <Row className="justify-content-lg-center ">
@@ -33,4 +34,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

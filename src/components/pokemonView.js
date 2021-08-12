@@ -14,8 +14,8 @@ const PokemonView = (props) => {
     getOnePokemon();
   }, []);
 
-  const getOnePokemon = async () => {
-    await axios
+  const getOnePokemon = () => {
+    axios
       .get(`https://pokeapi.co/api/v2/pokemon/${poke.Pokemon}`)
       .then((resp) => {
         console.log(resp, "ONE POKE");

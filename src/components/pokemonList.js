@@ -23,12 +23,6 @@ function PokemonList(props) {
       .catch((error) => console.log(`Error ${error}`));
   };
 
-  //   const getPokeData = () => {
-  //     axios.get(`https://pokeapi.co/api/v2/move/${props.id}`).then((resp) => {
-  //       console.log(resp);
-  //       getAllPokeData(resp.data);
-  //     });
-  //   };
   return (
     <div>
       <Card style={{ width: "18rem", marginTop: "30%" }}>
@@ -48,7 +42,7 @@ function PokemonList(props) {
             View Detail
           </Button>
           <Button
-            onClick={() => props.grabFavPoke(`${props.id}`)}
+            onClick={() => props.grabFavPoke(`${props.Pokemon}`)}
             style={{
               marginLeft: "2rem",
               backgroundColor: "red",

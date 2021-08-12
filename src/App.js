@@ -13,13 +13,14 @@ function App() {
   const [poke_mon, getPokemon] = useState([]);
   const [personLog, getPersonLog] = useState([]);
   const [favPoke, getFavPoke] = useState([]);
+  console.log(favPoke, "APP FAV");
 
   useEffect(() => {
     getAllPokemon();
   }, []);
 
-  const getAllPokemon = () => {
-    axios
+  const getAllPokemon = async () => {
+    await axios
       .get("https://pokeapi.co/api/v2/pokemon/?limit=5")
       .then((resp) => {
         // console.log(resp.data, "API");
@@ -32,12 +33,13 @@ function App() {
   };
 
   const grabLoginUsers = (e) => {
-    console.log(e);
+    // console.log(e);
     getPersonLog(e);
   };
 
-  const grabFavPoke = (id) => {
-    console.log(id);
+  const grabFavPoke = (pokemon) => {
+    // console.log(pokemon);
+    getFavPoke(pokemon);
   };
 
   return (
@@ -71,20 +73,14 @@ function App() {
           exact
           path="/pokemon/:id"
           render={(props) => {
-            return (
-              <PokemonView
-                {...props}
-                poke_mon={poke_mon}
-                // history={props.history}
-              />
-            );
+            return <PokemonView {...props} poke_mon={poke_mon} />;
           }}
         />
         <Route
           exact
-          path="/pokemon/favorites"
+          path="/favorites"
           render={(props) => {
-            return <Pokedex {...props} poke_mon={poke_mon} favPoke={favPoke} />;
+            return <Pokedex favPoke={favPoke} />;
           }}
         />
       </Switch>
